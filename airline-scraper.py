@@ -6,9 +6,9 @@ from datetime import date
 import TextSimplifier as Tx
 import time
 
-#CodeFrom = Tx.CityFrom(CityNameFrom)
-#CodeTo = Tx.CityTo(CityNameTo)
-#date = "2020-12-24"
+CodeFrom = Tx.CityFrom(CityNameFrom)
+CodeTo = Tx.CityTo(CityNameTo)
+date = "::-::-::::"
 
 #cities = {"casablanca":"CMN",
           #"agadir":"AGA",
@@ -20,20 +20,6 @@ import time
           #"lyon":"LYS",
           #"marseille":"MRS",
          #}
-
-def CityFrom(CityNameFrom):
-	for city in cities:
-		if city == CityNameFrom.lower():
-			CodeFrom = cities[city]
-	return CodeFrom
-
-
-def CityTo(CityNameTo):
-	for city in cities:
-		if city == CityNameTo.lower():
-			CodeTo = cities[city]
-	return CodeTo
-
 
 
 def AirlineScraper(CodeFrom, CodeTo, date):
