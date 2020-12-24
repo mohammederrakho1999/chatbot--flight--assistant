@@ -24,7 +24,6 @@ nltk.download('averaged_perceptron_tagger')
 lookup = ["casablanca","paris"] #contains city names
 extract = [] # list of targeted cities
 date = datetime.today().strftime("%Y-%m-%d")
-url = 'http://localhost:3000/'
 parser = English()
 
 
@@ -33,16 +32,13 @@ parser = English()
 
 class WebServerHandler(BaseHTTPRequestHandler):
 
-
 	def do_GET(self):
 		self.send_response(200)
 		self.send_header("content-type","text/plain")
 		self.end_headers()
 		message = urlparse(self.path).query.split("=")[1].replace("%20"," ")
 		intent = model.predict([message])[0]
-
 		if intent == "atis_flight":
-			#performing named entity recognition
 			tokens = nltk.word_tokenize(message)
 			msg_components = nltk.pos_tag(tokens)
 			for entity in msg_components:
@@ -51,11 +47,24 @@ class WebServerHandler(BaseHTTPRequestHandler):
 					CodeFrom = Tx.CityFrom(extract[0])
 			CodeTo = Tx.CityTo(extract[0])
 			flight_info = scraper.AirlineScraper(CodeFrom, CodeTo, date)
-		return bytes(flight_info,"UTF-8")
+			print(flight_info)
+			reply = 'Your Agenda:<br>'
+			reply = {
+			"summury":"schedule",
+			"start":{
+		         "intent":intent,
+		         "data":flight_info["FlightTime"][0],
+		         },
+		         "end":{
+		         "congrats":"hello world",
+		         "timezone":"casablanca",
+		         }
+		         }
+		reply += '<br>' + '/' + ' ' + date + ' ' + reply['data']
+		self.wfile.write({"intent": intent,"reply":reply})
 
-	def respond(self):
-		content = self.do_GET()
-		self.wfile.write(content)
+	def log_message(self, format, *args):
+		return
 
 
 
