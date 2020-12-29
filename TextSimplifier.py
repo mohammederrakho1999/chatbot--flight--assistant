@@ -37,20 +37,16 @@ cities = {"casablanca":"CMN",
 
 
 def CityFrom(CityNameFrom):
-
 	for city in cities:
 		if city == CityNameFrom.lower():
 			CodeFrom = cities[city]
-
 	return CodeFrom
 
 
 def CityTo(CityNameTo):
-
 	for city in cities:
 		if city == CityNameTo.lower():
 			CodeTo = cities[city]
-
 	return CodeTo
 
 
