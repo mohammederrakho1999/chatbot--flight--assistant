@@ -34,9 +34,9 @@ def AirlineScraper(CodeFrom, CodeTo, date):
 			try:
 				FlightTime = driver.find_element_by_xpath('.//section//span[@class="flights-itinerary-origin-departure"]').text
 				FlightArrivalTime = driver.find_element_by_xpath('.//section//span[@class="flights-itinerary-destination-arrival"]').text
-				duration = driver.find_element_by_xpath('.//section//span[@class="flights-itinerary-duration"]').text
+				Duration = driver.find_element_by_xpath('.//section//span[@class="flights-itinerary-duration"]').text
 				Type = driver.find_element_by_xpath('.//span[@class="flights-itinerary-duration-stops"]').text
-				site = driver.find_element_by_xpath('.//span[@class="first-offer-price"]').text
+				Site = driver.find_element_by_xpath('.//span[@class="first-offer-price"]').text
 			except:
 				pass
 
