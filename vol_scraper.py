@@ -42,9 +42,9 @@ def AirlineScraper(CodeFrom, CodeTo, date):
 
 			A.append(FlightTime)
 			B.append(FlightArrivalTime)
-			C.append(duration)
+			C.append(Duration)
 			D.append(Type)
-			E.append(site)
+			E.append(Site)
 
 	return dic
 
